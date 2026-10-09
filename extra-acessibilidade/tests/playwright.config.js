@@ -1,10 +1,17 @@
 // @ts-check
-// Config própria desse teste extra, separada da suíte principal (../../playwright.config.js).
-// Fica num arquivo à parte justamente pra não rodar junto do "npm test" da raiz do projeto.
+// Separate config for this extra, self-contained suite - not part of the official scope,
+// so it doesn't run together with the main "npm test".
 const { defineConfig, devices } = require('@playwright/test');
+const { defineBddConfig } = require('playwright-bdd');
+
+const testDir = defineBddConfig({
+  features: 'features/**/*.feature',
+  steps: 'step-definitions/**/*.js',
+  tags: 'not @known-bug',
+});
 
 module.exports = defineConfig({
-  testDir: '.',
+  testDir,
   fullyParallel: true,
   retries: 0,
   reporter: [['list'], ['html', { outputFolder: 'relatorio-html', open: 'never' }]],

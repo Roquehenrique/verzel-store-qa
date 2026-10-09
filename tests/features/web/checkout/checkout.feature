@@ -1,7 +1,9 @@
 # language: pt
 
+@web
 Funcionalidade: Validação de dados do cliente no checkout
 
+  @regression
   Esquema do Cenário: Dados obrigatórios e seus formatos são validados antes de confirmar o pedido
     Dado que estou na tela de checkout com um carrinho válido
     Quando preencho o campo "<campo>" com "<valor_invalido>"
@@ -15,12 +17,14 @@ Funcionalidade: Validação de dados do cliente no checkout
       | email  | maria-arroba-ponto  | Informe um e-mail válido.         |
       | cep    | ABCDE-123           | Informe um CEP com 8 dígitos.     |
 
+  @regression
   Cenário: CEP aceita formato com e sem hífen
     Dado que estou na tela de checkout com um carrinho válido
     Quando preencho nome, email e CEP "01310100" (sem hífen)
     E confirmo o pedido
     Então o pedido deve ser criado com sucesso
 
+  @regression
   Cenário: Fluxo de compra completo com cupom e frete grátis (ponta a ponta)
     Dado que adiciono produtos ao carrinho até o subtotal ultrapassar R$ 200,00
     E aplico o cupom "BEMVINDO10"

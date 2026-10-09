@@ -118,10 +118,13 @@ Legenda: ✅ Passou · ❌ Falhou · ⚠️ Observação (não é bug)
 - **Falhou:** 3 (detalhes em `bugs/` — organizados por severidade em `High/`, `Medium/` e `Low/`)
 - **Observações (não são bugs):** 2
 
-Automatizei com Playwright os cenários principais que passaram (cupom, frete, limite de
-quantidade e o fluxo de compra completo) — estão na pasta `automation/`. Os 3 bugs eu deixei só
-documentados em `bugs/`, com os comandos `curl` prontos pra reproduzir, porque não fazia muito
-sentido deixar um teste automatizado "quebrado" de propósito no meio da suíte.
+Automatizei com Playwright + Gherkin (BDD de verdade, não só documentação) os cenários
+principais que passaram (cupom, frete, limite de quantidade e o fluxo de compra completo) —
+os arquivos `.feature` estão em `tests/features/` e a implementação de cada passo em
+`tests/step-definitions/`. Os 3 bugs eu deixei só documentados em `bugs/`, com os comandos
+`curl` prontos pra reproduzir — os cenários correspondentes continuam no `.feature` (tagueados
+`@known-bug`), só não entram na geração/execução automática, porque não fazia muito sentido
+deixar um teste "quebrado" de propósito no meio da suíte.
 
 (Números acima contam só o escopo pedido no card. O teste extra de acessibilidade que fiz por
 conta própria tem a contagem dele à parte, em `extra-acessibilidade/relatorio-execucao.md`.)

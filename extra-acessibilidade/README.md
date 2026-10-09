@@ -7,8 +7,7 @@ pareceu uma boa escolha: não atrapalha ninguém (não é carga nem estresse no 
 é parte do trabalho de QA.
 
 Separei tudo isso numa pasta própria pra não misturar com as entregas que foram efetivamente
-pedidas na vaga, que ficam em `cenarios/`, `bugs/`, `execucao/` e `automation/` na raiz do
-projeto.
+pedidas na vaga, que ficam em `tests/`, `bugs/` e `execucao/` na raiz do projeto.
 
 ## O que testei
 
@@ -28,27 +27,35 @@ projeto.
 
 Detalhes completos da execução (o que passou, o que não passou) em
 [`relatorio-execucao.md`](relatorio-execucao.md). Cenários em Gherkin em
-[`acessibilidade.feature`](acessibilidade.feature).
+[`tests/features/accessibility.feature`](tests/features/accessibility.feature) — assim como no
+restante do projeto, esse `.feature` **é** o teste automatizado (via `playwright-bdd`), não só
+documentação ao lado de um teste separado.
 
 ## Onde está cada coisa
 
 ```
 extra-acessibilidade/
 ├── README.md                  (esse arquivo)
-├── acessibilidade.feature     (cenários em Gherkin)
 ├── relatorio-execucao.md      (resultado de cada cenário)
 ├── bugs/                      (os 2 bugs encontrados)
-└── automation/
-    ├── playwright.config.js   (config própria, separada da suíte principal)
-    └── acessibilidade.spec.js (testes automatizados)
+└── tests/
+    ├── features/
+    │   └── accessibility.feature     (cenários em Gherkin, em português, tags @web @accessibility)
+    ├── step-definitions/
+    │   └── accessibility.steps.js    (implementação de cada passo)
+    └── playwright.config.js          (config própria, separada da suíte principal)
 ```
+
+Os cenários tagueados `@known-bug` (os 2 bugs de acessibilidade) ficam no `.feature` como
+documentação, mas são excluídos da geração/execução — mesma convenção usada na raiz do
+projeto.
 
 ## Como rodar
 
 Essa automação **não roda junto com o `npm test` da raiz do projeto** — de propósito, pra não
 misturar com os testes do escopo oficial. Ela usa a mesma instalação de dependências da raiz
-(o `@axe-core/playwright` já está listado no `package.json` principal), só que com uma config
-própria:
+(`@axe-core/playwright` e `playwright-bdd` já estão listados no `package.json` principal), só
+que com uma config própria:
 
 ```bash
 # na raiz do projeto, depois do npm install / playwright install de sempre
