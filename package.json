@@ -1,0 +1,19 @@
+{
+  "name": "verzel-store-qa-teste-tecnico",
+  "version": "1.0.0",
+  "description": "Teste técnico QA Júnior - Verzel: cenários, execução, bugs e automação Playwright da entrega VZS-142 (cupom de desconto e frete grátis) da Verzel Store.",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:relatorio": "playwright show-report automation/relatorio-html",
+    "test:extra:acessibilidade": "playwright test --config extra-acessibilidade/automation/playwright.config.js",
+    "test:extra:acessibilidade:relatorio": "playwright show-report extra-acessibilidade/automation/relatorio-html"
+  },
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.64.0"
+  }
+}
