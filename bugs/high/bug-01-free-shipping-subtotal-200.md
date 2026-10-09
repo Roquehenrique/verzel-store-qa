@@ -39,4 +39,4 @@ problema parece estar só nesse valor exato de R$ 200,00 — como se a comparaç
 fosse "maior que 200" em vez de "maior ou igual a 200".
 
 ### Evidência
-`evidencias/exploracao/15-bug-frete-gratis-200.png` — carrinho com 2 Mochilas, subtotal R$ 200,00, mostrando o frete de R$ 19,90 cobrado em vez de grátis.
+`evidence/exploration/15-bug-free-shipping-200.png` — carrinho com 2 Mochilas, subtotal R$ 200,00, mostrando o frete de R$ 19,90 cobrado em vez de grátis.

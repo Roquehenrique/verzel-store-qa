@@ -8,7 +8,7 @@ Chrome, já que esse ambiente de teste não tinha um navegador disponível pra e
 testando a API direto com `curl`, pra cobrir as regras de cálculo e os códigos de erro que a
 documentação descreve.
 
-As capturas de tela citadas abaixo estão em `evidencias/exploracao/`.
+As capturas de tela citadas abaixo estão em `evidence/exploration/`.
 
 Legenda: ✅ Passou · ❌ Falhou · ⚠️ Observação (não é bug)
 
@@ -18,11 +18,11 @@ Legenda: ✅ Passou · ❌ Falhou · ⚠️ Observação (não é bug)
 
 | Cenário | O que testei | Esperado | O que aconteceu | Status |
 |---|---|---|---|---|
-| CA01 — Cupom válido aplica 10% | Adicionei "Camiseta Essencial" (R$ 59,90) e apliquei `BEMVINDO10` | Desconto de R$ 5,99 (10% de 59,90) | Desconto mostrado: "Desconto (BEMVINDO10) - R$ 5,99", total R$ 73,81 | ✅ `08-cupom-minusculo-com-espacos.png` |
-| CA02 — Cupom não liga pra maiúscula/minúscula e espaço | Apliquei `  bemvindo10  ` (minúsculo, com espaço antes e depois) | Deveria aplicar o cupom `BEMVINDO10` do mesmo jeito | Mensagem "Cupom BEMVINDO10 aplicado.", desconto de R$ 5,99 aplicado normal | ✅ `08-cupom-minusculo-com-espacos.png` |
-| CA03 — Cupom que não existe | Apliquei `NAOEXISTE` | Mensagem "Cupom inválido.", sem desconto | Mensagem apareceu certinha; desconto ficou R$ 0,00 | ✅ `09-cupom-invalido.png` |
-| CA04 — Cupom expirado | Apliquei `VERAO2026` (expirou em 31/03/2026) | Mensagem "Cupom expirado.", sem desconto | Mensagem apareceu certinha; desconto ficou R$ 0,00 | ✅ `10-cupom-expirado.png` |
-| CA05 — Só um cupom por vez | Apliquei `BEMVINDO10` e olhei a tela do carrinho | Não deveria ter como digitar outro cupom sem antes remover o atual | Depois de aplicar, o campo de texto some e só sobra "Cupom BEMVINDO10 aplicado." + botão "Remover cupom" | ✅ `11-cupom-aplicado.png` |
+| CA01 — Cupom válido aplica 10% | Adicionei "Camiseta Essencial" (R$ 59,90) e apliquei `BEMVINDO10` | Desconto de R$ 5,99 (10% de 59,90) | Desconto mostrado: "Desconto (BEMVINDO10) - R$ 5,99", total R$ 73,81 | ✅ `08-coupon-lowercase-with-spaces.png` |
+| CA02 — Cupom não liga pra maiúscula/minúscula e espaço | Apliquei `  bemvindo10  ` (minúsculo, com espaço antes e depois) | Deveria aplicar o cupom `BEMVINDO10` do mesmo jeito | Mensagem "Cupom BEMVINDO10 aplicado.", desconto de R$ 5,99 aplicado normal | ✅ `08-coupon-lowercase-with-spaces.png` |
+| CA03 — Cupom que não existe | Apliquei `NAOEXISTE` | Mensagem "Cupom inválido.", sem desconto | Mensagem apareceu certinha; desconto ficou R$ 0,00 | ✅ `09-invalid-coupon.png` |
+| CA04 — Cupom expirado | Apliquei `VERAO2026` (expirou em 31/03/2026) | Mensagem "Cupom expirado.", sem desconto | Mensagem apareceu certinha; desconto ficou R$ 0,00 | ✅ `10-expired-coupon.png` |
+| CA05 — Só um cupom por vez | Apliquei `BEMVINDO10` e olhei a tela do carrinho | Não deveria ter como digitar outro cupom sem antes remover o atual | Depois de aplicar, o campo de texto some e só sobra "Cupom BEMVINDO10 aplicado." + botão "Remover cupom" | ✅ `11-coupon-applied.png` |
 | Cupom inválido/expirado na API de cálculo não quebra, só avisa | `POST /api/carrinho/calcular` com cupom `NAOEXISTE` | Deveria responder 200 normalmente, com o motivo dentro de `cupom.mensagem` | Respondeu 200; `cupom.aplicado: false`, mensagem "Cupom inválido." | ✅ |
 | Cupom inválido/expirado na API de pedido dá erro de verdade | `POST /api/pedidos` com cupom inexistente e depois com cupom expirado | 422, com os códigos `CUPOM_INVALIDO` e `CUPOM_EXPIRADO` | Os dois casos deram certinho, exatamente como a documentação descreve | ✅ |
 
@@ -44,8 +44,8 @@ Legenda: ✅ Passou · ❌ Falhou · ⚠️ Observação (não é bug)
 
 | Cenário | O que testei | Esperado | O que aconteceu | Status |
 |---|---|---|---|---|
-| CA10 — A tela não deixa passar de 5 unidades | Cliquei no "+" várias vezes em "Camiseta Essencial" até chegar em 5 | Botão "+" deveria travar em 5 e mostrar um aviso | O botão fica desabilitado a partir de 5 unidades, e aparece o texto "Limite de 5 unidades por produto." | ✅ `06-limite-5-unidades.png` |
-| Teste exploratório — cliques bem rápidos no "+" | Com 2 produtos no carrinho, cliquei 4 vezes seguidas no "+" bem rápido, sem esperar a resposta de cada clique | Mesmo clicando rápido, o resultado final deveria estar certo | As respostas da API chegaram meio fora de ordem por causa da velocidade dos cliques, mas no final a tela mostrou o valor certo (quantidade travada em 5, subtotal R$ 999,00) — não vi nada errado pro usuário | ✅ `07-cliques-rapidos-quantidade.png` |
+| CA10 — A tela não deixa passar de 5 unidades | Cliquei no "+" várias vezes em "Camiseta Essencial" até chegar em 5 | Botão "+" deveria travar em 5 e mostrar um aviso | O botão fica desabilitado a partir de 5 unidades, e aparece o texto "Limite de 5 unidades por produto." | ✅ `06-quantity-limit.png` |
+| Teste exploratório — cliques bem rápidos no "+" | Com 2 produtos no carrinho, cliquei 4 vezes seguidas no "+" bem rápido, sem esperar a resposta de cada clique | Mesmo clicando rápido, o resultado final deveria estar certo | As respostas da API chegaram meio fora de ordem por causa da velocidade dos cliques, mas no final a tela mostrou o valor certo (quantidade travada em 5, subtotal R$ 999,00) — não vi nada errado pro usuário | ✅ `07-rapid-quantity-clicks.png` |
 | CA10.1 — A API de cálculo deveria recusar quantidade acima de 5 | `POST /api/carrinho/calcular` com quantidade 6 (testei também com 100) | Deveria responder 422 `QUANTIDADE_MAXIMA_EXCEDIDA` | Respondeu 200 e calculou normal, sem nenhum erro | ❌ **BUG-02** |
 | CA10.2 — A API de pedido deveria recusar quantidade acima de 5 | `POST /api/pedidos` com quantidade 6 e dados de cliente válidos | Deveria responder 422 `QUANTIDADE_MAXIMA_EXCEDIDA`, sem criar o pedido | Respondeu 201 e criou o pedido mesmo assim (`VZ-756695`) | ❌ **BUG-02** |
 
@@ -64,12 +64,12 @@ Legenda: ✅ Passou · ❌ Falhou · ⚠️ Observação (não é bug)
 
 | Cenário | O que testei | Esperado | O que aconteceu | Status |
 |---|---|---|---|---|
-| Nome sem sobrenome | No checkout, preenchi nome "Maria", e-mail e CEP válidos, e confirmei | Mensagem "Informe nome e sobrenome.", pedido não deveria ser criado | Mensagem apareceu do lado do campo, pedido não foi pra frente | ✅ `13-checkout-nome-invalido.png` |
+| Nome sem sobrenome | No checkout, preenchi nome "Maria", e-mail e CEP válidos, e confirmei | Mensagem "Informe nome e sobrenome.", pedido não deveria ser criado | Mensagem apareceu do lado do campo, pedido não foi pra frente | ✅ `13-checkout-invalid-name.png` |
 | E-mail inválido (testado na API) | `POST /api/pedidos` com e-mail "maria-arroba-invalido" | 422 `DADOS_INVALIDOS`, apontando o campo `cliente.email` | Confirmado, com a mensagem "Informe um e-mail válido." | ✅ |
 | CEP inválido (testado na API) | `POST /api/pedidos` com CEP "ABCDE-123" | 422 `DADOS_INVALIDOS`, apontando o campo `cliente.cep` | Confirmado, com a mensagem "Informe um CEP com 8 dígitos." | ✅ |
 | CEP sem hífen também é aceito | `POST /api/pedidos` com CEP sem hífen | A documentação diz que aceita com ou sem hífen | Pedido foi criado normal (201); o CEP voltou salvo sem hífen | ✅ |
 | Todos os dados do cliente faltando | `POST /api/pedidos` sem preencher o objeto `cliente` | Esperava pelo menos um erro | Voltaram os 3 erros de uma vez (nome, email e cep faltando) — achei legal que avisa tudo junto, em vez de um de cada vez | ✅ |
-| Fluxo de compra completo | Adicionei 1 produto, fui pro checkout, preenchi nome completo + e-mail válido + CEP válido, confirmei | Deveria aparecer a tela "Pedido confirmado" com número `VZ-000000` e o carrinho deveria esvaziar | Apareceu "Pedido VZ-321735" e o contador do carrinho voltou a zero | ✅ `14-pedido-confirmado.png` |
+| Fluxo de compra completo | Adicionei 1 produto, fui pro checkout, preenchi nome completo + e-mail válido + CEP válido, confirmei | Deveria aparecer a tela "Pedido confirmado" com número `VZ-000000` e o carrinho deveria esvaziar | Apareceu "Pedido VZ-321735" e o contador do carrinho voltou a zero | ✅ `14-order-confirmed.png` |
 
 ---
 
@@ -98,7 +98,7 @@ Legenda: ✅ Passou · ❌ Falhou · ⚠️ Observação (não é bug)
 > Fiz também uma rodada extra de teste exploratório de acessibilidade, por conta própria (não
 > fazia parte do que foi pedido no card). Pra não misturar com o escopo oficial da entrega,
 > deixei o relatório dela separado em
-> [`extra-acessibilidade/relatorio-execucao.md`](../extra-acessibilidade/relatorio-execucao.md).
+> [`extra-accessibility/execution-report.md`](../extra-accessibility/execution-report.md).
 
 ---
 
@@ -115,7 +115,7 @@ Legenda: ✅ Passou · ❌ Falhou · ⚠️ Observação (não é bug)
 
 - **Total de cenários testados:** 34
 - **Passou:** 29
-- **Falhou:** 3 (detalhes em `bugs/` — organizados por severidade em `High/`, `Medium/` e `Low/`)
+- **Falhou:** 3 (detalhes em `bugs/` — organizados por severidade em `high/`, `medium/` e `low/`)
 - **Observações (não são bugs):** 2
 
 Automatizei com Playwright + Gherkin (BDD de verdade, não só documentação) os cenários
@@ -127,4 +127,4 @@ os arquivos `.feature` estão em `tests/features/` e a implementação de cada p
 deixar um teste "quebrado" de propósito no meio da suíte.
 
 (Números acima contam só o escopo pedido no card. O teste extra de acessibilidade que fiz por
-conta própria tem a contagem dele à parte, em `extra-acessibilidade/relatorio-execucao.md`.)
+conta própria tem a contagem dele à parte, em `extra-accessibility/execution-report.md`.)

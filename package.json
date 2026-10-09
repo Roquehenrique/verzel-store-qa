@@ -1,5 +1,5 @@
 {
-  "name": "verzel-store-qa-teste-tecnico",
+  "name": "verzel-store-qa-technical-test",
   "version": "1.0.0",
   "description": "Teste técnico QA Júnior - Verzel: cenários BDD (Gherkin), execução, bugs e automação Playwright + playwright-bdd da entrega VZS-142 (cupom de desconto e frete grátis) da Verzel Store.",
   "private": true,
@@ -8,9 +8,9 @@
     "pretest": "npm run bddgen",
     "test": "playwright test",
     "test:ui": "npm run bddgen && playwright test --ui",
-    "test:relatorio": "playwright show-report tests/relatorio-html",
-    "test:extra:acessibilidade": "bddgen --config extra-acessibilidade/tests/playwright.config.js && playwright test --config extra-acessibilidade/tests/playwright.config.js",
-    "test:extra:acessibilidade:relatorio": "playwright show-report extra-acessibilidade/tests/relatorio-html"
+    "test:report": "playwright show-report tests/html-report",
+    "test:extra:accessibility": "bddgen --config extra-accessibility/tests/playwright.config.js && playwright test --config extra-accessibility/tests/playwright.config.js",
+    "test:extra:accessibility:report": "playwright show-report extra-accessibility/tests/html-report"
   },
   "license": "ISC",
   "type": "commonjs",

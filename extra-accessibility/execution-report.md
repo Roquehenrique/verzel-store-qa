@@ -28,7 +28,7 @@ Legenda: ✅ Passou · ❌ Falhou
 
 Os testes de navegação por teclado e o scanner automático estão automatizados em
 `tests/features/accessibility.feature` + `tests/step-definitions/accessibility.steps.js` (roda
-com `npm run test:extra:acessibilidade`, não com o `npm test` principal). Os scans só falham se
+com `npm run test:extra:accessibility`, não com o `npm test` principal). Os scans só falham se
 aparecer violação `critical` ou `serious` — as `moderate` que encontrei ficaram documentadas
 como bugs em `bugs/` e como cenários `@known-bug` no `.feature` (excluídos da execução), não
 deixei travando a suíte porque não impedem ninguém de usar o site.

@@ -1,9 +1,9 @@
 node_modules/
 test-results/
 .features-gen/
-tests/relatorio-html/
-extra-acessibilidade/tests/relatorio-html/
-extra-acessibilidade/tests/test-results/
+tests/html-report/
+extra-accessibility/tests/html-report/
+extra-accessibility/tests/test-results/
 playwright-report/
 blob-report/
 .DS_Store

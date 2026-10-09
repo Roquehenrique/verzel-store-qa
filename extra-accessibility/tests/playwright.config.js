@@ -14,7 +14,7 @@ module.exports = defineConfig({
   testDir,
   fullyParallel: true,
   retries: 0,
-  reporter: [['list'], ['html', { outputFolder: 'relatorio-html', open: 'never' }]],
+  reporter: [['list'], ['html', { outputFolder: 'html-report', open: 'never' }]],
   use: {
     baseURL: 'https://verzel-store.qa-test-verzel-store.workers.dev',
     trace: 'retain-on-failure',

@@ -13,11 +13,11 @@ teste técnico do processo seletivo de QA da Verzel.
 |---|---|
 | Cenários de teste (Gherkin/BDD) | [`tests/features/`](tests/features/) |
 | Automação (os cenários acima são os próprios testes executados) | [`tests/step-definitions/`](tests/step-definitions/) + [`tests/support/`](tests/support/) |
-| Execução dos testes manuais/exploratórios, com resultado de cada cenário | [`execucao/relatorio-execucao.md`](execucao/relatorio-execucao.md) |
+| Execução dos testes manuais/exploratórios, com resultado de cada cenário | [`execution/execution-report.md`](execution/execution-report.md) |
 | Bugs encontrados (organizados por severidade) | [`bugs/`](bugs/) |
-| Prints da execução | [`evidencias/exploracao/`](evidencias/exploracao/) |
-| Cópia da documentação da entrega (só pra consulta offline) | [`docs/documentacao-entrega.txt`](docs/documentacao-entrega.txt) |
-| Teste extra de acessibilidade (não pedido na vaga) | [`extra-acessibilidade/`](extra-acessibilidade/) |
+| Prints da execução | [`evidence/exploration/`](evidence/exploration/) |
+| Cópia da documentação da entrega (só pra consulta offline) | [`docs/delivery-documentation.txt`](docs/delivery-documentation.txt) |
+| Teste extra de acessibilidade (não pedido na vaga) | [`extra-accessibility/`](extra-accessibility/) |
 
 ## Bugs que encontrei (resumo)
 
@@ -25,7 +25,7 @@ teste técnico do processo seletivo de QA da Verzel.
 2. **[High]** A API aceita pedir mais de 5 unidades do mesmo produto, mesmo a documentação dizendo que o limite vale pra interface e pra API.
 3. **[Low]** Quando falta o campo `produtoId` num item, a API devolve o código de erro errado.
 
-Os bugs ficam separados em pastas por severidade (`bugs/High/`, `bugs/Medium/`, `bugs/Low/`).
+Os bugs ficam separados em pastas por severidade (`bugs/high/`, `bugs/medium/`, `bugs/low/`).
 Detalhes, passos pra reproduzir e prints de cada um estão em [`bugs/README.md`](bugs/README.md).
 
 ## Como está organizado o projeto
@@ -87,6 +87,23 @@ mesmo jeito). Também uso:
 - `@documentation` — um cenário que é só uma nota (ex: "pedidos não são persistidos"), sem uma
   forma sensata de automatizar uma prova de negativa. Também excluído da execução.
 
+Cada cenário também tem uma tag de **prioridade de execução** — útil pra rodar só o essencial
+quando o tempo é curto (ex: só `@critical` antes de um deploy):
+
+- `@critical` — regra de negócio com impacto financeiro direto (cálculo de frete, desconto) ou
+  o fluxo de compra ponta a ponta. Se isso quebrar, a loja vende errado.
+- `@high` — regras importantes mas secundárias (ordem de cálculo, validação de dados do
+  cliente, contrato de erro da API).
+- `@medium` — variações e casos de borda das regras principais (maiúscula/minúscula do cupom,
+  formato do CEP, etc.).
+- `@low` — detalhes com pouco impacto prático (arredondamento, consulta simples, particularidade
+  do ambiente).
+
+```bash
+# Rodar só os cenários críticos
+npx bddgen && npx playwright test --grep @critical
+```
+
 ## Como rodar a automação
 
 Precisa ter o [Node.js](https://nodejs.org/) instalado (usei a versão 20).
@@ -114,10 +131,10 @@ npx bddgen && npx playwright test tests/features/web/cart/coupon.feature
 npx bddgen && npx playwright test --grep @api
 
 # Abrir o relatório da última execução
-npm run test:relatorio
+npm run test:report
 ```
 
-O relatório HTML é gerado em `tests/relatorio-html/` (e `extra-acessibilidade/tests/relatorio-html/`
+O relatório HTML é gerado em `tests/html-report/` (e `extra-accessibility/tests/html-report/`
 pra suíte extra). Essas pastas não são commitadas (estão no `.gitignore`) — são recriadas toda
 vez que os testes rodam.
 
@@ -142,7 +159,7 @@ mais por conta própria, e acessibilidade pareceu uma boa escolha: não atrapalh
 ambiente compartilhado e também é parte do trabalho de QA.
 
 Separei tudo isso (cenário, bugs, automação e relatório) numa pasta própria,
-[`extra-acessibilidade/`](extra-acessibilidade/), com a mesma organização BDD daqui, pra não
+[`extra-accessibility/`](extra-accessibility/), com a mesma organização BDD daqui, pra não
 misturar com o que foi efetivamente pedido na vaga. Essa automação também fica fora da suíte
 principal (não roda com `npm test`) — tem um comando específico pra ela, explicado no README de
 lá.
