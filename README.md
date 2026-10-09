@@ -79,13 +79,15 @@ Cada cenário tem pelo menos uma tag de **tipo de aplicação** testada — hoje
 API, então uso `@web` e `@api` (se um dia existisse app mobile, entrariam `@android`/`@ios` do
 mesmo jeito). Também uso:
 
-- `@regression` — cenário que roda normalmente como parte da suíte.
+- `@regression` — cenário que descreve um comportamento que já funciona hoje.
 - `@known-bug` — cenário que descreve o comportamento **correto** esperado pela documentação,
-  mas que hoje falha por causa de um bug confirmado (ver `bugs/`). Fica no `.feature` como
-  documentação executável, mas é **excluído** da geração/execução (configurado em
-  `playwright.config.js`), pra não deixar um teste "quebrado" de propósito dentro da suíte.
+  mas que hoje falha por causa de um bug confirmado (ver `bugs/`). Roda **de propósito** junto
+  com o resto da suíte, como teste de regressão do bug: enquanto o bug existir, `npm test`
+  mostra esses 3 cenários como falha — isso é esperado, não é a suíte quebrada. Quando o bug for
+  corrigido, o teste passa a passar sozinho, sem precisar mexer em nada.
 - `@documentation` — um cenário que é só uma nota (ex: "pedidos não são persistidos"), sem uma
-  forma sensata de automatizar uma prova de negativa. Também excluído da execução.
+  forma sensata de automatizar uma prova de negativa. Esse sim fica fora da execução
+  (configurado em `playwright.config.js`), já que não há o que rodar.
 
 Cada cenário também tem uma tag de **prioridade de execução** — útil pra rodar só o essencial
 quando o tempo é curto (ex: só `@critical` antes de um deploy):
@@ -118,6 +120,12 @@ npm test
 roda tudo. Os testes rodam direto contra o site da Verzel Store que já está no ar, não precisa
 subir nada local.
 
+> **`npm test` vai terminar com 3 testes falhando — isso é esperado.** São os cenários
+> `@known-bug` (ver seção de Tags abaixo): eles descrevem o comportamento correto esperado pela
+> documentação e falham porque a Verzel Store tem 3 bugs confirmados nesse momento (ver
+> `bugs/`). Não é a suíte quebrada — é a suíte sinalizando bug de verdade. Resultado esperado:
+> **37 passam, 3 falham** (40 no total).
+
 Outras formas de rodar:
 
 ```bash
@@ -143,13 +151,13 @@ vez que os testes rodam.
 | Feature | O que cobre |
 |---|---|
 | `tests/features/web/cart/coupon.feature` | CA01 a CA05.1 — aplicar cupom, maiúscula/minúscula, cupom inválido/expirado, trocar de cupom |
-| `tests/features/web/cart/shipping.feature` | CA06 a CA09 — frete grátis acima de R$ 200 e frete fixo abaixo (CA06.1 documentado, não executado — é o BUG-01) |
+| `tests/features/web/cart/shipping.feature` | CA06 a CA09 — frete grátis acima de R$ 200 e frete fixo abaixo (CA06.1 é teste de regressão do BUG-01, falha até o bug ser corrigido) |
 | `tests/features/web/cart/quantity-limit.feature` | CA10 — limite de 5 unidades na tela |
 | `tests/features/web/cart/rounding.feature` | CA11 — arredondamento de valores |
 | `tests/features/web/checkout/checkout.feature` | Validação dos dados do cliente e fluxo de compra do início ao fim |
 | `tests/features/web/environment/environment-notes.feature` | Particularidades do ambiente (carrinho isolado por aba) |
 | `tests/features/api/error-handling.feature` | Todos os códigos de erro que a documentação da API descreve |
-| `tests/features/api/cart-rules.feature` | CA10.1/CA10.2 documentados, não executados — é o BUG-02 |
+| `tests/features/api/cart-rules.feature` | CA10.1/CA10.2 — teste de regressão do BUG-02, falha até o bug ser corrigido |
 
 ## Teste extra: acessibilidade
 

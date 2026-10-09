@@ -5,9 +5,10 @@ const { defineBddConfig } = require('playwright-bdd');
 const testDir = defineBddConfig({
   features: 'tests/features/**/*.feature',
   steps: 'tests/step-definitions/**/*.js',
-  // @known-bug: a confirmed bug (see bugs/) - kept as documentation, not run as a test that's
-  // expected to fail on purpose. @documentation: a note that isn't really an automatable check.
-  tags: 'not @known-bug and not @documentation',
+  // @known-bug scenarios run on purpose, as regression tests for confirmed bugs (see bugs/):
+  // they describe the CORRECT behavior and fail until the bug is fixed. @documentation is the
+  // only tag excluded - it's just a note, there's nothing sensible to automate as a negative proof.
+  tags: 'not @documentation',
 });
 
 module.exports = defineConfig({

@@ -47,8 +47,9 @@ extra-accessibility/
 ```
 
 Os cenários tagueados `@known-bug` (os 2 bugs de acessibilidade) ficam no `.feature` como
-documentação, mas são excluídos da geração/execução — mesma convenção usada na raiz do
-projeto.
+documentação, mas são excluídos da geração/execução aqui nessa suíte extra. (Na suíte oficial,
+na raiz do projeto, a convenção é diferente: lá os `@known-bug` rodam de propósito, como teste
+de regressão dos 3 bugs do escopo oficial — ver `README.md` da raiz.)
 
 ## Como rodar
 

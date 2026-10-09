@@ -118,13 +118,14 @@ Legenda: ✅ Passou · ❌ Falhou · ⚠️ Observação (não é bug)
 - **Falhou:** 3 (detalhes em `bugs/` — organizados por severidade em `high/`, `medium/` e `low/`)
 - **Observações (não são bugs):** 2
 
-Automatizei com Playwright + Gherkin (BDD de verdade, não só documentação) os cenários
-principais que passaram (cupom, frete, limite de quantidade e o fluxo de compra completo) —
-os arquivos `.feature` estão em `tests/features/` e a implementação de cada passo em
-`tests/step-definitions/`. Os 3 bugs eu deixei só documentados em `bugs/`, com os comandos
-`curl` prontos pra reproduzir — os cenários correspondentes continuam no `.feature` (tagueados
-`@known-bug`), só não entram na geração/execução automática, porque não fazia muito sentido
-deixar um teste "quebrado" de propósito no meio da suíte.
+Automatizei com Playwright + Gherkin (BDD de verdade, não só documentação) tanto os cenários
+que passaram (cupom, frete, limite de quantidade e o fluxo de compra completo) quanto os 3
+bugs — os arquivos `.feature` estão em `tests/features/` e a implementação de cada passo em
+`tests/step-definitions/`. Os cenários de bug ficam tagueados `@known-bug` e rodam junto com o
+resto: `npm test` termina com 3 falhas de propósito (os bugs confirmados), funcionando como
+teste de regressão — quando a Verzel corrigir algum deles, o teste correspondente passa a
+passar sozinho. Os bugs também estão documentados em `bugs/`, com os comandos `curl` prontos
+pra reproduzir fora da automação.
 
 (Números acima contam só o escopo pedido no card. O teste extra de acessibilidade que fiz por
 conta própria tem a contagem dele à parte, em `extra-accessibility/execution-report.md`.)
