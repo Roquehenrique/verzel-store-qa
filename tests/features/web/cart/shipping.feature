@@ -35,7 +35,7 @@ Funcionalidade: Frete grátis
     Quando aplico um cupom válido de 10%
     Então o frete deve continuar "Grátis"
     # O desconto reduziria o total pago, mas não deve "tirar" o cliente do frete grátis
-    # nem o contrário: a base de cálculo do frete é sempre o subtotal cheio.
+    # nem o contrário: a base de cálculo do frete é sempre o subtotal cheio. (AMB-03)
 
   @regression @high
   Cenário: CA09 - O desconto do cupom não incide sobre o valor do frete

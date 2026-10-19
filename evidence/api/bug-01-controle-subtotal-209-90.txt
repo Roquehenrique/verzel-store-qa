@@ -1,0 +1,22 @@
+# Capturado em: 2026-10-19T01:08:30Z (UTC)
+# Ambiente: https://verzel-store.qa-test-verzel-store.workers.dev
+# --- REQUEST ---
+POST /api/carrinho/calcular
+Content-Type: application/json
+{"itens":[{"produtoId":"P005","quantidade":1},{"produtoId":"P001","quantidade":1},{"produtoId":"P008","quantidade":1}]}
+
+# --- RESPONSE (curl -i) ---
+HTTP/2 200 
+date: Mon, 19 Oct 2026 01:08:30 GMT
+content-type: application/json; charset=utf-8
+content-length: 418
+access-control-allow-origin: *
+access-control-allow-headers: content-type
+access-control-allow-methods: GET, POST, OPTIONS
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=b9nHlZIxckgWgtzw%2BuPN7Amkap1FJvgublM9fB2wCqVAxZqsMEL3OwvbStmeHis3baelGUzYGH3kXIMDJlXSRQEU%2BAFfNbzN79nGwY8J4y%2FbrqeV%2FXq28QNJiQhpjT02jy4IetFR6yQ0A0wfNM4fdmE6p2J8PQgowspXphc58nU%3D"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+server: cloudflare
+cf-ray: a4cbe45c4fa20c22-GRU
+alt-svc: h3=":443"; ma=86400
+
+{"itens":[{"produtoId":"P005","nome":"Mochila Urbana 20L","precoUnitario":100,"quantidade":1,"total":100},{"produtoId":"P001","nome":"Camiseta Essencial","precoUnitario":59.9,"quantidade":1,"total":59.9},{"produtoId":"P008","nome":"Garrafa Térmica 750ml","precoUnitario":50,"quantidade":1,"total":50}],"subtotal":209.9,"desconto":0,"frete":0,"freteGratis":true,"valorFaltanteFreteGratis":0,"total":209.9,"cupom":null}

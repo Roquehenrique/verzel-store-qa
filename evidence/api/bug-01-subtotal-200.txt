@@ -1,0 +1,22 @@
+# Capturado em: 2026-10-19T01:08:29Z (UTC)
+# Ambiente: https://verzel-store.qa-test-verzel-store.workers.dev
+# --- REQUEST ---
+POST /api/carrinho/calcular
+Content-Type: application/json
+{"itens":[{"produtoId":"P005","quantidade":2}]}
+
+# --- RESPONSE (curl -i) ---
+HTTP/2 200 
+date: Mon, 19 Oct 2026 01:08:30 GMT
+content-type: application/json; charset=utf-8
+content-length: 224
+access-control-allow-origin: *
+access-control-allow-headers: content-type
+access-control-allow-methods: GET, POST, OPTIONS
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=7II%2BMgAEPx3ONHZULo4L%2BHkIyTPL910fz1xewspFGfmpKuQjC%2FiCalmM4vxaayTLu9ogfv8nVw9I4jL9WbVMN607hM%2F4t0n%2ButLngm5biBuIufE8R8FOQQCONL6tyujhxdZj%2FgM9YWO5a7dct5A8KSzMfTLEgnawTGEvyfZXKDA%3D"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+server: cloudflare
+cf-ray: a4cbe4599a27a438-GRU
+alt-svc: h3=":443"; ma=86400
+
+{"itens":[{"produtoId":"P005","nome":"Mochila Urbana 20L","precoUnitario":100,"quantidade":2,"total":200}],"subtotal":200,"desconto":0,"frete":19.9,"freteGratis":false,"valorFaltanteFreteGratis":0,"total":219.9,"cupom":null}

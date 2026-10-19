@@ -17,6 +17,10 @@ Os dois bugs `High` quebram regras que estão escritas explicitamente na documen
 de aceite CA06 e CA10). O `Low` é mais um detalhe de código/mensagem de erro da API, que não
 chega a afetar quem está comprando pelo site.
 
+As interpretações da documentação que sustentam cada bug estão em
+[`docs/ambiguidades.md`](../docs/ambiguidades.md), e as evidências brutas em
+[`evidence/`](../evidence/README.md) (prints em `exploration/`, request/response de API em `api/`).
+
 Cada arquivo de bug tem: critério de aceite violado (quando aplicável), passos pra reproduzir
 (inclusive comando `curl` pronto pra copiar e colar), o que era esperado, o que realmente
 acontece, e evidência (print, quando tem).

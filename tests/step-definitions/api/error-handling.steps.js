@@ -1,4 +1,4 @@
-const { expect } = require('@playwright/test');
+const { expect, test } = require('@playwright/test');
 const { createBdd } = require('playwright-bdd');
 
 const { When, Then } = createBdd();
@@ -7,8 +7,19 @@ const METHODS = { GET: 'get', POST: 'post', DELETE: 'delete', PUT: 'put' };
 
 let lastResponse;
 
+// Anexa request e response completos ao relatório HTML do Playwright: assim cada cenário de API
+// carrega a própria evidência (status, corpo enviado e corpo recebido), sem depender de print.
 async function send(request, method, route, options) {
   lastResponse = await request[METHODS[method]](route, options);
+  const sent = options && options.data !== undefined ? options.data : null;
+  await test.info().attach('api-request', {
+    body: `${method} ${route}\n${sent === null ? '(sem corpo)' : typeof sent === 'string' ? sent : JSON.stringify(sent, null, 2)}`,
+    contentType: 'text/plain',
+  });
+  await test.info().attach('api-response', {
+    body: `HTTP ${lastResponse.status()}\n${await lastResponse.text()}`,
+    contentType: 'text/plain',
+  });
 }
 
 function readPath(obj, path) {

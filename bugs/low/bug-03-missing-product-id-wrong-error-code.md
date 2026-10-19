@@ -28,3 +28,11 @@ Isso é só um código/mensagem de erro técnico que aparece numa chamada de API
 é algo que o cliente final vai ver navegando no site normalmente. A documentação tem uma parte
 meio ambígua aqui (não deixa 100% claro o que conta como "item inválido" vs. "produto não
 encontrado"), e documentei minha interpretação conforme pedido nas regras do teste.
+
+### Evidência de API (bruta)
+- [`evidence/api/bug-03-item-sem-produtoid.txt`](../../evidence/api/bug-03-item-sem-produtoid.txt) — o bug (`PRODUTO_NAO_ENCONTRADO`)
+- [`evidence/api/bug-03-controle-item-nao-objeto.txt`](../../evidence/api/bug-03-controle-item-nao-objeto.txt) — controle: um item que nem é objeto devolve `ITEM_INVALIDO` corretamente
+
+### Interpretação adotada
+A ambiguidade citada acima está registrada, com a interpretação e o impacto, em
+[AMB-01](../../docs/ambiguidades.md#amb-01).

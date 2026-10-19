@@ -15,7 +15,9 @@ teste técnico do processo seletivo de QA da Verzel.
 | Automação (os cenários acima são os próprios testes executados) | [`tests/step-definitions/`](tests/step-definitions/) + [`tests/support/`](tests/support/) |
 | Execução dos testes manuais/exploratórios, com resultado de cada cenário | [`execution/execution-report.md`](execution/execution-report.md) |
 | Bugs encontrados (organizados por severidade) | [`bugs/`](bugs/) |
-| Prints da execução | [`evidence/exploration/`](evidence/exploration/) |
+| Prints da execução (UI) | [`evidence/exploration/`](evidence/exploration/) |
+| Evidências de API (request + response brutos) e tabela cenário → evidência | [`evidence/api/`](evidence/api/) + [`evidence/README.md`](evidence/README.md) |
+| Ambiguidades da documentação e interpretação adotada em cada uma | [`docs/ambiguidades.md`](docs/ambiguidades.md) |
 | Cópia da documentação da entrega (só pra consulta offline) | [`docs/delivery-documentation.txt`](docs/delivery-documentation.txt) |
 | Teste extra de acessibilidade (não pedido na vaga) | [`extra-accessibility/`](extra-accessibility/) |
 

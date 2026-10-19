@@ -1,0 +1,22 @@
+# Capturado em: 2026-10-19T01:08:31Z (UTC)
+# Ambiente: https://verzel-store.qa-test-verzel-store.workers.dev
+# --- REQUEST ---
+POST /api/carrinho/calcular
+Content-Type: application/json
+{"itens":[{"quantidade":1}]}
+
+# --- RESPONSE (curl -i) ---
+HTTP/2 422 
+date: Mon, 19 Oct 2026 01:08:31 GMT
+content-type: application/json; charset=utf-8
+content-length: 121
+access-control-allow-origin: *
+access-control-allow-headers: content-type
+access-control-allow-methods: GET, POST, OPTIONS
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=pH6uwTsr7Sy%2FZ9TMs9Asm0I8PfkH2HxoUmaWUy9zRI7oNABBYRIULg1I%2B8hEdQE471bAiZgsKg4g87uxmSqNcSSbqfaDKfkW8JHRnvdw1J6rveqENBUJrAZvG%2BfAI%2BS4Bc3d0uChlZh7Xqwk1OGuexFvj2frh%2BppZmXJ5KdeMj4%3D"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+server: cloudflare
+cf-ray: a4cbe46058966ea3-GRU
+alt-svc: h3=":443"; ma=86400
+
+{"erro":{"codigo":"PRODUTO_NAO_ENCONTRADO","mensagem":"Produto undefined não encontrado.","campo":"itens[0].produtoId"}}

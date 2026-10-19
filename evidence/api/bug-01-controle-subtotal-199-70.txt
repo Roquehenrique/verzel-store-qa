@@ -1,0 +1,22 @@
+# Capturado em: 2026-10-19T01:08:30Z (UTC)
+# Ambiente: https://verzel-store.qa-test-verzel-store.workers.dev
+# --- REQUEST ---
+POST /api/carrinho/calcular
+Content-Type: application/json
+{"itens":[{"produtoId":"P002","quantidade":1},{"produtoId":"P006","quantidade":2}]}
+
+# --- RESPONSE (curl -i) ---
+HTTP/2 200 
+date: Mon, 19 Oct 2026 01:08:30 GMT
+content-type: application/json; charset=utf-8
+content-length: 331
+access-control-allow-origin: *
+access-control-allow-headers: content-type
+access-control-allow-methods: GET, POST, OPTIONS
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=%2BN7ujZ4WEqMmuvfpygQfPT2%2B3nZe8yHO6xhYJi9KQBw%2FJ9UMVCRObd5apOgVJToQLGtaOLCB78SzTEaerZI4GGEvqNBMzNILimiRdI%2FBEzbGtHC2YuVndW31EdnqsMFCIUsqc9efcR2P1drTH%2BiNHDJG%2FqMqrZddaSBAkbeosyY%3D"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+server: cloudflare
+cf-ray: a4cbe45afa3432a9-GRU
+alt-svc: h3=":443"; ma=86400
+
+{"itens":[{"produtoId":"P002","nome":"Calça Jeans Slim","precoUnitario":139.9,"quantidade":1,"total":139.9},{"produtoId":"P006","nome":"Kit 3 Pares de Meias","precoUnitario":29.9,"quantidade":2,"total":59.8}],"subtotal":199.7,"desconto":0,"frete":19.9,"freteGratis":false,"valorFaltanteFreteGratis":0.3,"total":219.6,"cupom":null}

@@ -1,0 +1,22 @@
+# Capturado em: 2026-10-19T01:08:30Z (UTC)
+# Ambiente: https://verzel-store.qa-test-verzel-store.workers.dev
+# --- REQUEST ---
+POST /api/pedidos
+Content-Type: application/json
+{"cliente":{"nome":"Maria Silva","email":"maria@exemplo.com","cep":"01310-100"},"itens":[{"produtoId":"P001","quantidade":6}]}
+
+# --- RESPONSE (curl -i) ---
+HTTP/2 201 
+date: Mon, 19 Oct 2026 01:08:31 GMT
+content-type: application/json; charset=utf-8
+content-length: 362
+access-control-allow-origin: *
+access-control-allow-headers: content-type
+access-control-allow-methods: GET, POST, OPTIONS
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=wR22PvdbAdCONAjEd1Zbv3xSDJB6eBwmg%2Fu%2BVpcNdNE%2F8Gj5%2FSe3TY4U70KFF874VG21%2FCEmw2ciL0A%2BhXfuZJ1FgzRXY3U%2B3McHiRMWeNnIIf41IhqS3TM4jN9mi5AXXceBzqs6ZYlZsNv9RLYaxcEtV982ddTQ12jP8xS2lj0%3D"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+server: cloudflare
+cf-ray: a4cbe45efd665b29-GRU
+alt-svc: h3=":443"; ma=86400
+
+{"numero":"VZ-696712","criadoEm":"2026-10-19T01:08:31.211Z","cliente":{"nome":"Maria Silva","email":"maria@exemplo.com","cep":"01310100"},"itens":[{"produtoId":"P001","nome":"Camiseta Essencial","precoUnitario":59.9,"quantidade":6,"total":359.4}],"subtotal":359.4,"desconto":0,"frete":0,"freteGratis":true,"valorFaltanteFreteGratis":0,"total":359.4,"cupom":null}

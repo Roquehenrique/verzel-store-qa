@@ -1,0 +1,22 @@
+# Capturado em: 2026-10-19T01:08:31Z (UTC)
+# Ambiente: https://verzel-store.qa-test-verzel-store.workers.dev
+# --- REQUEST ---
+POST /api/carrinho/calcular
+Content-Type: application/json
+{"itens":[{"produtoId":"P001","quantidade":1}],"cupom":"NAOEXISTE"}
+
+# --- RESPONSE (curl -i) ---
+HTTP/2 200 
+date: Mon, 19 Oct 2026 01:08:31 GMT
+content-type: application/json; charset=utf-8
+content-length: 295
+access-control-allow-origin: *
+access-control-allow-headers: content-type
+access-control-allow-methods: GET, POST, OPTIONS
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=p56UD7RCdNaIJczoyps1rlIJ6HG7pUBUIddsEEE7hYCVQzlMGeyeW6J1fSytbDr6ytqtYnMbe05JPur%2B1NG9fQ71MboQ9aYapo7tsT%2BI%2BC6LPxHDXE5GjNdGjzvGo%2FwwJNWziXKMCmMi9oWUu5ZqMEqVIwx11TukOx0Ev4B7kKI%3D"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+server: cloudflare
+cf-ray: a4cbe4632e748a23-GRU
+alt-svc: h3=":443"; ma=86400
+
+{"itens":[{"produtoId":"P001","nome":"Camiseta Essencial","precoUnitario":59.9,"quantidade":1,"total":59.9}],"subtotal":59.9,"desconto":0,"frete":19.9,"freteGratis":false,"valorFaltanteFreteGratis":140.1,"total":79.8,"cupom":{"codigo":"NAOEXISTE","aplicado":false,"mensagem":"Cupom inválido."}}

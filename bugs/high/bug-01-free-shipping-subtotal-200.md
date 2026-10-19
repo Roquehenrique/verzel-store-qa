@@ -40,3 +40,12 @@ fosse "maior que 200" em vez de "maior ou igual a 200".
 
 ### Evidência
 `evidence/exploration/15-bug-free-shipping-200.png` — carrinho com 2 Mochilas, subtotal R$ 200,00, mostrando o frete de R$ 19,90 cobrado em vez de grátis.
+
+### Evidência de API (bruta)
+Request e `curl -i` completos (status, headers e corpo), gerados por `scripts/capture-api-evidence.sh`:
+- [`evidence/api/bug-01-subtotal-200.txt`](../../evidence/api/bug-01-subtotal-200.txt) — o bug (R$ 200,00 → `frete: 19.9`, `freteGratis: false`)
+- [`evidence/api/bug-01-controle-subtotal-199-70.txt`](../../evidence/api/bug-01-controle-subtotal-199-70.txt) — controle logo abaixo (frete cobrado, correto)
+- [`evidence/api/bug-01-controle-subtotal-209-90.txt`](../../evidence/api/bug-01-controle-subtotal-209-90.txt) — controle logo acima (frete grátis, correto)
+
+### Ambiguidade relacionada
+`valorFaltanteFreteGratis: 0` junto com `freteGratis: false` é contraditório — ver [AMB-04](../../docs/ambiguidades.md#amb-04).

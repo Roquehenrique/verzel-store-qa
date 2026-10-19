@@ -1,0 +1,22 @@
+# Capturado em: 2026-10-19T01:08:31Z (UTC)
+# Ambiente: https://verzel-store.qa-test-verzel-store.workers.dev
+# --- REQUEST ---
+POST /api/pedidos
+Content-Type: application/json
+{"cliente":{"nome":"Maria Silva","email":"maria@exemplo.com","cep":"01310-100"},"itens":[{"produtoId":"P001","quantidade":1}],"cupom":"VERAO2026"}
+
+# --- RESPONSE (curl -i) ---
+HTTP/2 422 
+date: Mon, 19 Oct 2026 01:08:32 GMT
+content-type: application/json; charset=utf-8
+content-length: 81
+access-control-allow-origin: *
+access-control-allow-headers: content-type
+access-control-allow-methods: GET, POST, OPTIONS
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=g%2FjR82RpwkL2oHFTnAdq6dzJYJUcsAem%2BhnTETfET1pKfw0f4W6x1EJWQmqoUaTgUmT%2BliTgPTrx5Jk7UhzB4YBz%2FTAhfwLShdmxOuqmESBP6r7tKyDjNj%2FEDwCEYBE7FGSsgq7iAgGQOp1NOeOKR%2BSRs6w3I9f0uc0wi3oqvW0%3D"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+server: cloudflare
+cf-ray: a4cbe4647dcc6234-GRU
+alt-svc: h3=":443"; ma=86400
+
+{"erro":{"codigo":"CUPOM_EXPIRADO","mensagem":"Cupom expirado.","campo":"cupom"}}

@@ -3,7 +3,7 @@
 @web
 Funcionalidade: Particularidades do ambiente de teste (não são bugs)
   # Isso aqui é só pra registrar - está descrito na seção "Sobre este ambiente" da
-  # documentação, então não é pra reportar como bug.
+  # documentação, então não é pra reportar como bug. Ver docs/ambiguidades.md (AMB-08).
 
   @regression @low
   Cenário: Carrinho é isolado por aba/navegador

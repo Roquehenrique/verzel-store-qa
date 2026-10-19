@@ -15,4 +15,4 @@ Funcionalidade: Arredondamento de valores
     # limitadas a 5 por produto, então um desconto de 10% em qualquer subtotal alcançável nunca
     # chega a exigir arredondar uma terceira casa decimal diferente de zero. Não consegui montar
     # um caso de borda de verdade (ex: terminando em ",x5") com os dados fixos do catálogo -
-    # documentado aqui como limitação conhecida, não como bug.
+    # documentado aqui como limitação conhecida, não como bug. Ver docs/ambiguidades.md (AMB-02).
